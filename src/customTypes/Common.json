@@ -1,0 +1,158 @@
+{
+	"Main": {
+		"header_notice_switch": {
+			"type": "Boolean",
+			"config": {
+				"default_value": true,
+				"label": "Header Notice Switch"
+			}
+		},
+		"special_notice_title": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Special Notice Title",
+				"placeholder": "Enter top header texts here"
+			}
+		},
+		"top_header_color": {
+			"type": "Color",
+			"config": {
+				"label": "Top Header Color"
+			}
+		},
+		"logo": {
+			"type": "Image",
+			"config": {
+				"constraint": {},
+				"thumbnails": [],
+				"label": "logo"
+			}
+		},
+		"search_placeholder": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+				"label": "Search Placeholder",
+				"placeholder": "Ex. What are you looking for?"
+			}
+		},
+		"shopping_cart_title": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+				"label": "Shopping Cart Title",
+				"placeholder": "Ex. Shopping cart"
+			}
+		},
+		"total_amount_text": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+				"label": "Total Amount Text",
+				"placeholder": "Ex. Total Amount:"
+			}
+		},
+		"checkout_button_text": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+				"label": "Checkout Button Text",
+				"placeholder": "Ex. Proceed To Checkout"
+			}
+		},
+		"copyright_text": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"allowTargetBlank": true,
+				"label": "Copyright Text",
+				"placeholder": "Enter copyright"
+			}
+		},
+		"social_links": {
+			"type": "Group",
+			"config": {
+				"fields": {
+					"social_type": {
+						"type": "Text",
+						"config": {
+							"label": "Social TYpe",
+							"placeholder": "Enter Social Type"
+						}
+					},
+					"social_link": {
+						"type": "Link",
+						"config": {
+							"label": "Social Link",
+							"placeholder": "Enter Social Link",
+							"allowTargetBlank": true
+						}
+					}
+				},
+				"label": "Social Links"
+			}
+		},
+		"ad_blocks": {
+			"type": "Group",
+			"config": {
+				"fields": {
+					"block_image": {
+						"type": "Image",
+						"config": {
+							"constraint": {},
+							"thumbnails": [],
+							"label": "Block Image"
+						}
+					},
+					"badge_title": {
+						"type": "StructuredText",
+						"config": {
+							"single": "paragraph",
+							"label": "Badge Title",
+							"placeholder": "Save upto 20%"
+						}
+					},
+					"badge_color": {
+						"type": "Color",
+						"config": {
+							"label": "Badge Color"
+						}
+					},
+					"title": {
+						"type": "StructuredText",
+						"config": {
+							"single": "heading3",
+							"label": "title",
+							"placeholder": "Enter your ad block title"
+						}
+					},
+					"short_description": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph",
+							"label": "Short Description",
+							"placeholder": "Enter a quick intro of your ad block"
+						}
+					},
+					"add_a_button": {
+						"type": "Boolean",
+						"config": {
+							"default_value": true,
+							"label": "Add a button"
+						}
+					},
+					"button_title": {
+						"type": "StructuredText",
+						"config": {
+							"single": "strong",
+							"label": "Button Title",
+							"placeholder": "Order Now"
+						}
+					}
+				},
+				"label": "Ad Blocks"
+			}
+		}
+	}
+}

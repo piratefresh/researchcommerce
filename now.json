@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "env": {
+    "GATSBY_SHOP_NAME": "magnus-ecommerce-test",
+    "GATSBY_SHOPIFY_ACCESS_TOKEN": "36abc8d55a215026bef0ba11cc8e5968",
+    "GATSBY_PRISMIC_REPOSITORY": "demostoremagnus"
+  },
+  "build": {
+    "env": {
+      "GATSBY_SHOP_NAME": "magnus-ecommerce-test",
+      "GATSBY_SHOPIFY_ACCESS_TOKEN": "36abc8d55a215026bef0ba11cc8e5968",
+      "GATSBY_PRISMIC_REPOSITORY": "demostoremagnus"
+    }
+  }
+}

@@ -1,0 +1,216 @@
+{
+	"Main": {
+		"banner": {
+			"type": "Image",
+			"config": {
+				"constraint": {},
+				"thumbnails": [],
+				"label": "Banner"
+			}
+		},
+		"banner_slider": {
+			"type": "Group",
+			"config": {
+				"fields": {
+					"image": {
+						"type": "Image",
+						"config": {
+							"constraint": {},
+							"thumbnails": [],
+							"label": "Image"
+						}
+					},
+					"banner_title1": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+							"label": "Banner Title",
+							"placeholder": "Enter Banner Title"
+						}
+					},
+					"banner_subtitle1": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+							"label": "Banner Subtitle",
+							"placeholder": "Enter Banner Subtitle"
+						}
+					},
+					"banner_description": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+							"label": "Banner Description",
+							"placeholder": "Enter Banner Description"
+						}
+					}
+				},
+				"label": "Banner Slider"
+			}
+		},
+		"banner_title": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"allowTargetBlank": true,
+				"label": "Banner Title",
+				"placeholder": "Enter banner Title"
+			}
+		},
+		"banner_subtitle": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"allowTargetBlank": true,
+				"label": "Banner Subtitle",
+				"placeholder": "Enter Banner Subtitle"
+			}
+		},
+		"banner_button_text": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"allowTargetBlank": true,
+				"label": "Banner Button Text",
+				"placeholder": "Ex. Order Now"
+			}
+		},
+		"trending_block_title": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"allowTargetBlank": true,
+				"label": "Trending Block Title",
+				"placeholder": "Ex. Trending Product"
+			}
+		},
+		"view_more_text": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"allowTargetBlank": true,
+				"label": "View more Text",
+				"placeholder": "View More"
+			}
+		},
+		"how_it_works_title": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+				"label": "How it works title",
+				"placeholder": "Enter title for how it works block"
+			}
+		},
+		"how_it_works_subtitle": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "How it works subtitle",
+				"placeholder": "Enter subtitle for how it works block"
+			}
+		},
+		"how_it_works_group": {
+			"type": "Group",
+			"config": {
+				"fields": {
+					"image": {
+						"type": "Image",
+						"config": {
+							"constraint": {},
+							"thumbnails": [],
+							"label": "image"
+						}
+					},
+					"title": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+							"label": "Title",
+							"placeholder": "Enter title"
+						}
+					},
+					"description": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+							"label": "description",
+							"placeholder": "Enter description"
+						}
+					}
+				},
+				"label": "How it works group"
+			}
+		},
+		"call_us_banner": {
+			"type": "Image",
+			"config": {
+				"constraint": {},
+				"thumbnails": [],
+				"label": "Call us banner"
+			}
+		},
+		"call_us_title": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Call us title",
+				"placeholder": "Enter call us block text here"
+			}
+		},
+		"call_us_button_text": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Call us button text",
+				"placeholder": "Enter call us button text here"
+			}
+		},
+		"category_section_title": {
+			"type": "StructuredText",
+			"config": {
+				"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+				"label": "Category Section Title",
+				"placeholder": "Shop by Category"
+			}
+		},
+		"category_section_short_intro": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Category Section Short Intro",
+				"placeholder": "Visit our shop to see amazing products"
+			}
+		},
+		"category_block": {
+			"type": "Group",
+			"config": {
+				"fields": {
+					"image": {
+						"type": "Image",
+						"config": {
+							"constraint": {},
+							"thumbnails": [],
+							"label": "Image"
+						}
+					},
+					"category_title": {
+						"type": "StructuredText",
+						"config": {
+							"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+							"label": "Category Title",
+							"placeholder": "Enter Category Title"
+						}
+					},
+					"category_slug": {
+						"type": "Text",
+						"config": {
+							"label": "Category Slug",
+							"placeholder": "Enter Category Slug"
+						}
+					}
+				},
+				"label": "Category Block"
+			}
+		}
+	}
+}

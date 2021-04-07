@@ -1,0 +1,85 @@
+{
+	"Main": {
+		"banner_image": {
+			"type": "Image",
+			"config": {
+				"constraint": {},
+				"thumbnails": [],
+				"label": "Banner Image"
+			}
+		},
+		"banner_title": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Banner Title"
+			}
+		},
+		"banner_subtitle": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Banner Subtitle"
+			}
+		},
+		"banner_button_text": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Banner Button Text"
+			}
+		},
+		"call_us_banner": {
+			"type": "Image",
+			"config": {
+				"constraint": {},
+				"thumbnails": [],
+				"label": "Call us banner"
+			}
+		},
+		"call_us_banner_content": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Call us banner content"
+			}
+		},
+		"call_us_button_text": {
+			"type": "StructuredText",
+			"config": {
+				"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+				"label": "Call us button text"
+			}
+		},
+		"how_it_works": {
+			"type": "Group",
+			"config": {
+				"fields": {
+					"thumbnail": {
+						"type": "Image",
+						"config": {
+							"constraint": {},
+							"thumbnails": [],
+							"label": "Thumbnail"
+						}
+					},
+					"title": {
+						"type": "StructuredText",
+						"config": {
+							"single": "heading1, heading2, heading3, heading4, heading5, heading6",
+							"label": "Title"
+						}
+					},
+					"short_description": {
+						"type": "StructuredText",
+						"config": {
+							"multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+							"label": "Short Description"
+						}
+					}
+				},
+				"label": "How it works"
+			}
+		}
+	}
+}
