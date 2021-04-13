@@ -109,7 +109,7 @@ const ProductCard: React.FC<PropsType> = (product) => {
 	if (!available) {
 		addClass.push("disabled");
 	}
-
+	
 	return (
 		<Box
 			sx={styles.wrapper}

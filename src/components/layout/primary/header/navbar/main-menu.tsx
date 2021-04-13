@@ -124,7 +124,8 @@ const MainMenu: React.FC<{ onClick?: () => void; pathPrefix?: string }> = ({
             menuData.map((item) => (
               <Box
                 as="li"
-                className={`dropdown-items-${item?.submenu.length}`}
+                // className={`dropdown-items-${item.submenu?.length}`}
+                className={`dropdown-items`}
                 key={item.title}
                 sx={styles.mainMenuItem}
               >

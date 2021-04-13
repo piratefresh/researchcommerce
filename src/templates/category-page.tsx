@@ -9,7 +9,6 @@ const CategoryPage = ({ data, pageContext }: any) => {
   const { image, products } = data.shopifyCollection;
   const productsType = pageContext?.handle;
   const title = productsType.charAt(0).toUpperCase() + productsType.slice(1);
-
   return (
     <PrimaryLayout>
       <SEO title={title} />
