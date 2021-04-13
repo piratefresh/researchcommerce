@@ -14,7 +14,12 @@ const CategoryPage = ({ data, pageContext }) => {
     <SecondaryLayout>
       <SEO title={title} />
       <CategoryBanner title={title} bgImage={image} />
-      <ProductGrid id="category" products={products} isCategoryProduct={true} />
+      <ProductGrid
+        id="category"
+        products={products}
+        isCategoryProduct={true}
+        withLink
+      />
     </SecondaryLayout>
   );
 };

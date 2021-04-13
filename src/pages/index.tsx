@@ -98,8 +98,8 @@ const IndexPage: React.FC<{}> = () => (
           /> */}
           <ImageSlider bannerSlideBlock={bannerSlideBlock} />
           <CategoryBlocks categoryBlock={categoryBlock} />
-          <FeaturedProducts />
-          <TrendingProducts />
+          <FeaturedProducts withLink />
+          <TrendingProducts withLink />
           <HowItWorks
             howItWorksTitle={howItWorksTitle}
             howItWorksSubtitle={howItWorksSubtitle}
