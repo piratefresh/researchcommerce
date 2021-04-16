@@ -4,6 +4,7 @@ import { Link, StaticQuery, graphql } from "gatsby";
 import { Box, Text, jsx } from "theme-ui";
 import { IoIosArrowDown } from "react-icons/io";
 import useWindowSize from "../../../../../hooks/useWindowSize";
+import { useUI } from "../../../../../context/UIContext";
 import styles from "./navbar.style";
 
 const menuStaticQuery = graphql`
@@ -117,9 +118,28 @@ const MainMenu: React.FC<{ onClick?: () => void; pathPrefix?: string }> = ({
           }
         }
       }, [windowSize]);
+      const { openSidebar } = useUI();
 
       return (
         <Box className="mainMenu" as="ul" ref={mainMenu} sx={styles.mainMenu}>
+          <li
+            className="flex flex-row items-center font-semibold cursor-pointer"
+            onClick={openSidebar}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-1"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+            All
+          </li>
           {menuData &&
             menuData.map((item) => (
               <Box

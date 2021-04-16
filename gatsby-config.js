@@ -1,5 +1,5 @@
-require("ts-node").register({ files: true });
-require("dotenv").config({
+require('ts-node').register({ files: true });
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
@@ -39,6 +39,15 @@ module.exports = {
     `gatsby-plugin-typegen`,
     `gatsby-plugin-theme-ui`,
     `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-postcss',
+    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-portal`,
+      options: {
+        key: 'portal',
+        id: 'portal',
+      },
+    },
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -59,14 +68,23 @@ module.exports = {
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN, // Load from env
         verbose: true,
         paginationSize: 100,
-        includeCollections: ["shop"],
+        includeCollections: ['shop'],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries: require('./src/utils/algolia-queries'),
+        enablePartialUpdates: true,
       },
     },
     {
       resolve: `gatsby-source-prismic-graphql`,
       options: {
         repositoryName: process.env.GATSBY_PRISMIC_REPOSITORY, // Load from env
-        path: "/preview",
+        path: '/preview',
         previews: true,
         sharpKeys: [
           /image|photo|picture/, // (default)
@@ -77,13 +95,13 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [`Open Sans\:400,600,700`, `Poppins\:400,600,700`],
-        display: "swap",
+        display: 'swap',
       },
     },
     {
-      resolve: "gatsby-plugin-nprogress",
+      resolve: 'gatsby-plugin-nprogress',
       options: {
-        color: "#333",
+        color: '#333',
         showSpinner: false,
       },
     },
@@ -93,7 +111,7 @@ module.exports = {
       options: {
         useMozJpeg: false,
         stripMetadata: true,
-        defaultQuality: "95",
+        defaultQuality: '95',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

@@ -9,10 +9,13 @@ const CategoryPage = ({ data, pageContext }: any) => {
   const { image, products } = data.shopifyCollection;
   const productsType = pageContext?.handle;
   const title = productsType.charAt(0).toUpperCase() + productsType.slice(1);
+  if (!products) return <div>Loading...</div>;
+  console.log("products", products);
   return (
     <PrimaryLayout>
       <SEO title={title} />
-      <CategoryBanner title={title} bgImage={image} />
+      <h2 className="text-2xl font-bold my-2">{title}</h2>
+      {/* <CategoryBanner title={title} bgImage={image} /> */}
       <ProductGrid
         id="category"
         products={products}
@@ -44,6 +47,7 @@ export const query = graphql`
         createdAt
         shopifyId
         availableForSale
+        tags
         variants {
           id
           price

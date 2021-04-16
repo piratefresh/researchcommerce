@@ -26,7 +26,7 @@ const ImageSlider = ({ bannerSlideBlock }: any) => {
       sx={styles.banner}
     >
       {bannerSlideBlock.map((item: any) => (
-        <SwiperSlide>
+        <SwiperSlide key={item.banner_title1}>
           <img
             src={item.imageSharp.childImageSharp.fluid.srcWebp}
             alt=""

@@ -1,0 +1,23 @@
+# schema:
+#   - "https://demostoremagnus.prismic.io/graphql":
+#       method: GET
+#       headers:
+#         Authorization: "MC5ZR3pvLUJNQUFDSUFnRlA3.77-9Ze-_ve-_ve-_ve-_vSzvv70U77-977-977-9HO-_vTPvv70E77-977-977-977-9VSbvv73vv71WPndAJjZ2no"
+#         "Prismic-Ref": "YHVJvBMAACIApiMW"
+# # documents: "src/graphql/**/*.graphql"
+# generates:
+#   src/generated/prismic.tsx:
+#     plugins:
+#       - "typescript"
+#       - "typescript-operations"
+#       - "typescript-urql"
+
+schema: http://localhost:8000/___graphql
+# documents:
+#   - ./src/**/*.{ts,tsx}
+#   - ./node_modules/gatsby*/!(node_modules)/**/*.js
+generates:
+  src/generated/gatsby.tsx:
+    plugins:
+      - typescript
+      - typescript-operations

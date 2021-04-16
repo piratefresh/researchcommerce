@@ -1,0 +1,23 @@
+.link {
+  @apply text-4xl font-bold cursor-pointer mt-4;
+}
+
+.link:hover {
+  @apply underline;
+}
+
+.smallLink {
+  @apply text-lg font-bold cursor-pointer mt-4;
+}
+
+.smallLink:hover {
+  @apply underline;
+}
+
+.smallestLink {
+  @apply text-sm font-bold cursor-pointer mt-4;
+}
+
+.smallestLink:hover {
+  @apply underline;
+}
