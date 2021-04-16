@@ -16,7 +16,7 @@ type IndexProp = {
 };
 
 type PageHitProps = {
-  hit: Hit;
+  hit: any;
 };
 
 type HitsInIndexProps = {
@@ -39,17 +39,21 @@ const HitCount = connectStateResults(({ searchResults }) => {
 });
 
 const PageHit = ({ hit }: PageHitProps) => {
+  console.log("hit", hit);
   return (
     <div>
       <Link
         className="flex flex-row items-center"
         to={`/product/${hit.handle}`}
       >
-        <img
-          className="object-cover h-16 w-16 mr-4"
-          src={hit.image}
-          alt={hit.title}
-        />
+        {hit.images ? (
+          <img
+            className="object-cover h-16 w-16 mr-4"
+            src={hit.images[0]?.localFile?.childImageSharp?.fluid.srcWebp}
+            alt={hit.title}
+          />
+        ) : null}
+
         <div className="flex flex-col">
           <h4 className="font-semibold">
             <Highlight attribute="title" hit={hit} tagName="mark" />
