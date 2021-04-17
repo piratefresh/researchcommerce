@@ -46,10 +46,10 @@ const PageHit = ({ hit }: PageHitProps) => {
         className="flex flex-row items-center"
         to={`/product/${hit.handle}`}
       >
-        {hit.images ? (
+        {hit.image ? (
           <img
             className="object-cover h-16 w-16 mr-4"
-            src={hit.images[0]?.localFile?.childImageSharp?.fluid.srcWebp}
+            src={hit.image}
             alt={hit.title}
           />
         ) : null}

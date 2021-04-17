@@ -2,8 +2,8 @@ const escapeStringRegexp = require("escape-string-regexp");
 const pagePath = `content`;
 const indexName = `Pages`;
 
-const products = "shopify_products";
-const collections = "shopify_collections";
+const products = "shopify_products_tmp";
+const collections = "shopify_collections_tmp";
 const resources = "Resources";
 
 const searchQuery = `{
