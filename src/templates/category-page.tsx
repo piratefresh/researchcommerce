@@ -10,18 +10,24 @@ const CategoryPage = ({ data, pageContext }: any) => {
   const productsType = pageContext?.handle;
   const title = productsType.charAt(0).toUpperCase() + productsType.slice(1);
   if (!products) return <div>Loading...</div>;
-  console.log("products", products);
+
   return (
     <PrimaryLayout>
       <SEO title={title} />
       <h2 className="text-2xl font-bold my-2">{title}</h2>
       {/* <CategoryBanner title={title} bgImage={image} /> */}
-      <ProductGrid
-        id="category"
-        products={products}
-        isCategoryProduct={true}
-        withLink
-      />
+      {products ? (
+        <ProductGrid
+          id="category"
+          products={products}
+          isCategoryProduct={true}
+          withLink
+        />
+      ) : (
+        <div>
+          <h2>No Products</h2>
+        </div>
+      )}
     </PrimaryLayout>
   );
 };
