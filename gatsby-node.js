@@ -1,7 +1,7 @@
-require('ts-node').register({ files: true });
+require("ts-node").register({ files: true });
 const path = require(`path`);
-var fs = require('fs');
-var dir = './.cache/caches/gatsby-source-prismic-graphql';
+var fs = require("fs");
+var dir = "./.cache/caches/gatsby-source-prismic-graphql";
 
 exports.onPreBootstrap = () => {
   if (!fs.existsSync(dir)) {
@@ -12,6 +12,7 @@ exports.onPreBootstrap = () => {
 /** @type { import("gatsby").GatsbyNode["createPages"] } */
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
+
   return graphql(`
     {
       allShopifyProduct {
@@ -31,6 +32,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then((result) => {
+    console.log("gatsby node: ", result);
     result.data.allShopifyProduct.edges.forEach(({ node }) => {
       createPage({
         path: `/product/${node.handle}/`,

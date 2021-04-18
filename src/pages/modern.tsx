@@ -21,10 +21,13 @@ const modernPageStaticQuery = graphql`
             }
             banner_image {
               fluid {
+                aspectRatio
+                base64
+                sizes
                 src
+                srcSet
                 srcWebp
                 srcSetWebp
-                srcSet
               }
             }
           }
@@ -45,10 +48,13 @@ const modernPageStaticQuery = graphql`
               }
               block_image {
                 fluid {
+                  aspectRatio
+                  base64
+                  sizes
                   src
+                  srcSet
                   srcWebp
                   srcSetWebp
-                  srcSet
                 }
               }
               short_description {
@@ -70,15 +76,20 @@ const ModernHome: React.FC<{}> = () => (
   <StaticQuery<GatsbyTypes.Query>
     query={`${modernPageStaticQuery}`}
     render={(data) => {
-      const homeBanner = get(data, "prismic.allHomemoderns.edges[0].node");
-      const adBlocks = get(data, "prismic.allCommons.edges[0].node.ad_blocks");
+      const homeBanner = get(data, "allPrismicHomeModern.edges[0].node.data");
+      const adBlocks = get(
+        data,
+        "allPrismicCommon.edges[0].node.data.ad_blocks"
+      );
+
+      console.log(adBlocks);
       return (
         <SecondaryLayout>
           <SEO title="Home" />
           <HomeBanner
-            bannerTitle={homeBanner?.banner_title}
-            bannerSubTitle={homeBanner?.banner_subtitle}
-            banner={homeBanner?.banner_image?.url}
+            bannerTitle={homeBanner?.banner_title.text}
+            bannerSubTitle={homeBanner?.banner_subtitle.text}
+            banner={homeBanner?.banner_image?.fluid}
             showActionBtn={false}
           />
           <AdBanner data={adBlocks} scrollTo="#allProducts" scrollOffset={70} />

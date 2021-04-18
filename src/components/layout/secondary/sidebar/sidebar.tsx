@@ -7,35 +7,7 @@ import styles from "./sidebar.style";
 
 const menuStaticQuery = graphql`
   query {
-    firstData: allPrismicCategory {
-      totalCount
-      edges {
-        node {
-          uid
-          data {
-            title {
-              text
-            }
-            parent_category {
-              document {
-                ... on PrismicCategory {
-                  data {
-                    title {
-                      text
-                    }
-                  }
-                  uid
-                }
-              }
-            }
-          }
-        }
-      }
-      pageInfo {
-        hasNextPage
-      }
-    }
-    lastData: allPrismicCategory {
+    allPrismicCategory {
       totalCount
       edges {
         node {
@@ -67,26 +39,31 @@ const menuStaticQuery = graphql`
 `;
 
 const getMenuData = (categories) => {
-  const data: any = [];
+  const data = [];
   //fill up first parent
-  categories.forEach((category: any) => {
-    if (!category?.node?.parent_category) {
-      const uid = category?.node?._meta.uid;
-      const text = category?.node?.title[0]?.text;
+  categories.forEach((category) => {
+    if (!category.node?.data?.parent_category?.document) {
+      const uid = category?.node?.uid;
+      const text = category?.node?.data.title.text;
       if (uid && text) {
         data.push({ path: uid, title: text });
       }
     }
   });
   //fill up child
-  categories.forEach((category: any) => {
-    if (category?.node?.parent_category) {
-      const parent = category?.node?.parent_category?._meta?.uid;
-      const uid = category?.node?._meta.uid;
-      const text = category?.node?.title[0]?.text;
-      const index = data.findIndex((item: any) => item.path === parent);
+  categories.forEach((category) => {
+    if (category?.node?.data?.parent_category) {
+      const parent = category?.node?.data?.parent_category?.document?.uid;
+      const uid = category?.node?.uid;
+      const text = category?.node?.data.title.text;
+      const index = data.findIndex((item) => {
+        console.log(item.path);
+        return item.path === parent;
+      });
+
       if (index > -1) {
-        if (data[index]?.submenu && data[index]?.submenu?.length) {
+        console.log("index: ", index);
+        if (data[index].submenu && data[index].submenu.length) {
           data[index].submenu.push({ path: uid, title: text });
         } else {
           data[index].submenu = [];
@@ -95,6 +72,8 @@ const getMenuData = (categories) => {
       }
     }
   });
+
+  console.log("data menu: ", data);
   return data;
 };
 
@@ -102,11 +81,10 @@ const Sidebar: React.FC<{ onClose?: () => void }> = ({ onClose }) => (
   <StaticQuery<GatsbyTypes.Query>
     query={`${menuStaticQuery}`}
     render={(data: any) => {
-      const firstData = data?.prismic?.firstData || false;
-      const lastData = data?.prismic?.lastData || false;
+      const { allPrismicCategory } = data;
       let categories: any = [];
-      if (firstData && lastData) {
-        categories = [...firstData?.edges, ...lastData?.edges];
+      if (allPrismicCategory) {
+        categories = [...allPrismicCategory.edges];
       }
       const menuData = getMenuData(categories);
       return (
