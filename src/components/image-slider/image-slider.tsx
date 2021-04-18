@@ -25,12 +25,12 @@ const ImageSlider = ({ bannerSlideBlock }: any) => {
       onSwiper={(swiper) => console.log(swiper)}
       sx={styles.banner}
     >
-      {bannerSlideBlock.map((item: any) => (
-        <SwiperSlide key={item.banner_title1}>
+      {bannerSlideBlock.map((item: any, index: number) => (
+        <SwiperSlide key={index}>
           <img
-            src={item.imageSharp.childImageSharp.fluid.srcWebp}
+            src={item.image.fluid.srcWebp}
             alt=""
-            srcSet={item.imageSharp.childImageSharp.fluid.srcSet}
+            srcSet={item.image.fluid.srcSet}
             className="object-cover rounded-md"
             style={{
               width: "100%",

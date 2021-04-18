@@ -6,70 +6,48 @@ import { IoIosArrowDown } from "react-icons/io";
 import useWindowSize from "../../../../../hooks/useWindowSize";
 import { useUI } from "../../../../../context/UIContext";
 import styles from "./navbar.style";
+import { PrismicCategory, PrismicCategoryEdge } from "generated/gatsby";
 
 const menuStaticQuery = graphql`
   query {
-    prismic {
-      firstData: allCategorys {
-        totalCount
-        edges {
-          cursor
-          node {
-            _meta {
-              uid
+    allPrismicCategory {
+      totalCount
+      edges {
+        node {
+          uid
+          data {
+            title {
+              text
             }
-            title
             parent_category {
-              ... on PRISMIC_Category {
-                title
-                _meta {
+              document {
+                ... on PrismicCategory {
+                  data {
+                    title {
+                      text
+                    }
+                  }
                   uid
                 }
               }
             }
           }
-        }
-        pageInfo {
-          hasNextPage
-          endCursor
         }
       }
-      lastData: allCategorys(after: "YXJyYXljb25uZWN0aW9uOjE5") {
-        totalCount
-        edges {
-          cursor
-          node {
-            _meta {
-              uid
-            }
-            title
-            parent_category {
-              ... on PRISMIC_Category {
-                title
-                _meta {
-                  uid
-                }
-              }
-            }
-          }
-        }
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
+      pageInfo {
+        hasNextPage
       }
     }
   }
 `;
 
 const getMenuData = (categories) => {
-  console.log("categories: ", categories);
   const data = [];
   //fill up first parent
   categories.forEach((category) => {
-    if (!category?.node?.parent_category) {
-      const uid = category?.node?._meta.uid;
-      const text = category?.node?.title[0]?.text;
+    if (!category.node?.data?.parent_category?.document) {
+      const uid = category?.node?.uid;
+      const text = category?.node?.data.title.text;
       if (uid && text) {
         data.push({ path: uid, title: text });
       }
@@ -77,12 +55,17 @@ const getMenuData = (categories) => {
   });
   //fill up child
   categories.forEach((category) => {
-    if (category?.node?.parent_category) {
-      const parent = category?.node?.parent_category?._meta?.uid;
-      const uid = category?.node?._meta.uid;
-      const text = category?.node?.title[0]?.text;
-      const index = data.findIndex((item) => item.path === parent);
+    if (category?.node?.data?.parent_category) {
+      const parent = category?.node?.data?.parent_category?.document?.uid;
+      const uid = category?.node?.uid;
+      const text = category?.node?.data.title.text;
+      const index = data.findIndex((item) => {
+        console.log(item.path);
+        return item.path === parent;
+      });
+
       if (index > -1) {
+        console.log("index: ", index);
         if (data[index].submenu && data[index].submenu.length) {
           data[index].submenu.push({ path: uid, title: text });
         } else {
@@ -92,6 +75,8 @@ const getMenuData = (categories) => {
       }
     }
   });
+
+  console.log("data menu: ", data);
   return data;
 };
 
@@ -102,9 +87,11 @@ const MainMenu: React.FC<{ onClick?: () => void; pathPrefix?: string }> = ({
   <StaticQuery<GatsbyTypes.Query>
     query={`${menuStaticQuery}`}
     render={(data) => {
-      const { firstData, lastData } = data.prismic;
-      const categories = [...firstData.edges, ...lastData.edges];
+      const { allPrismicCategory } = data;
+      const categories = [...allPrismicCategory.edges];
+
       const menuData = getMenuData(categories);
+
       const mainMenu = useRef(null);
       const windowSize = useWindowSize();
       useEffect(() => {

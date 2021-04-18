@@ -1,154 +1,214 @@
-import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import get from 'lodash/get';
-import SEO from '../components/seo';
-import PrimaryLayout from '../components/layout/primary/primary';
-import HomeBanner from '../components/home-banner/home-banner';
-import HowItWorks from '../components/how-it-works/secondary/secondary';
-import CategoryBlocks from '../components/category-blocks/secondary/secondary';
-import FeaturedProducts from '../components/featured-products/featured-products-home';
-import AdBanner from '../components/ad-banner/ad-banner';
-import TrendingProducts from '../components/trending-products/trending-products-home';
-import CallusBanner from '../components/call-us-banner/call-us-banner';
+import React from "react";
+import { StaticQuery, graphql } from "gatsby";
+import get from "lodash/get";
+import SEO from "../components/seo";
+import PrimaryLayout from "../components/layout/primary/primary";
+import HomeBanner from "../components/home-banner/home-banner";
+import HowItWorks from "../components/how-it-works/secondary/secondary";
+import CategoryBlocks from "../components/category-blocks/secondary/secondary";
+import FeaturedProducts from "../components/featured-products/featured-products-home";
+import AdBanner from "../components/ad-banner/ad-banner";
+import TrendingProducts from "../components/trending-products/trending-products-home";
+import CallusBanner from "../components/call-us-banner/call-us-banner";
 
 const indexPageStaticQuery = graphql`
-	query {
-		prismic {
-			allHomeminimals {
-				edges {
-					node {
-						banner_title
-						banner_subtitle
-						banner_button_text
-						banner_image
-						how_it_works {
-							thumbnail
-							title
-							short_description
-						}
-						call_us_banner
-						call_us_banner_content
-						call_us_button_text
-					}
-				}
-			}
-			allHomes {
-				edges {
-					node {
-						category_section_title
-						category_section_short_intro
-						category_block {
-							category_slug
-							category_title
-							image
-							imageSharp {
-								childImageSharp {
-									fluid {
-										...GatsbyImageSharpFluid_withWebp_tracedSVG
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			allCommons {
-				edges {
-					node {
-						ad_blocks {
-							badge_title
-							badge_color
-							title
-							block_image
-							short_description
-							add_a_button
-							button_title
-						}
-					}
-				}
-			}
-		}
-	}
+  query {
+    allPrismicHomeminimal {
+      edges {
+        node {
+          data {
+            call_us_banner {
+              url
+            }
+            call_us_banner_content {
+              text
+            }
+            call_us_button_text {
+              text
+            }
+            banner_button_text {
+              text
+            }
+            banner_image {
+              url
+            }
+            banner_title {
+              text
+            }
+            banner_subtitle {
+              text
+            }
+            how_it_works {
+              title {
+                text
+              }
+              thumbnail {
+                url
+              }
+              short_description {
+                text
+              }
+            }
+          }
+        }
+      }
+    }
+    allPrismicHome {
+      edges {
+        node {
+          data {
+            category_section_title {
+              text
+            }
+            category_section_short_intro {
+              text
+            }
+            category_block {
+              category_slug
+              category_title {
+                text
+              }
+              image {
+                fluid {
+                  aspectRatio
+                  base64
+                  sizes
+                  src
+                  srcSet
+                  srcSetWebp
+                  srcWebp
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    allPrismicCommon {
+      edges {
+        node {
+          data {
+            ad_blocks {
+              badge_title {
+                text
+              }
+              badge_color
+              title {
+                text
+              }
+              block_image {
+                fluid {
+                  aspectRatio
+                  base64
+                  sizes
+                  src
+                  srcSet
+                  srcSetWebp
+                  srcWebp
+                }
+              }
+              short_description {
+                text
+              }
+              add_a_button
+              button_title {
+                text
+              }
+            }
+            copyright_text {
+              text
+            }
+          }
+        }
+      }
+    }
+  }
 `;
 
 const IndexPage: React.FC<{}> = () => (
-	<StaticQuery<GatsbyTypes.Query>
-		query={`${indexPageStaticQuery}`}
-		render={(data) => {
-			const categorySectionTitle = get(
-				data,
-				'prismic.allHomes.edges[0].node.category_section_title'
-			);
-			const categorySectionIntro = get(
-				data,
-				'prismic.allHomes.edges[0].node.category_section_short_intro'
-			);
-			const categoryItems = get(
-				data,
-				'prismic.allHomes.edges[0].node.category_block'
-			);
-			const node = get(data, 'prismic.allHomeminimals.edges[0].node');
-			const adBlocks = get(data, 'prismic.allCommons.edges[0].node.ad_blocks');
-			const bannerImage = node.banner_image.url;
-			const bannerTitle = node.banner_title;
-			const bannerSubTitle = node.banner_subtitle;
-			const bannerButtonText = node.banner_button_text;
-			const howItworks = node.how_it_works;
-			const callUsBanner = node.call_us_banner;
-			const callUsBannerContent = node.call_us_banner_content;
-			const callUsButtonText = node.call_us_button_text;
+  <StaticQuery<GatsbyTypes.Query>
+    query={`${indexPageStaticQuery}`}
+    render={(data) => {
+      const categorySectionTitle = get(
+        data,
+        "allPrismicHome.edges[0].node.data.category_section_title"
+      );
+      const categorySectionIntro = get(
+        data,
+        "allPrismicHome.edges[0].node.data.category_section_short_intro"
+      );
+      const categoryItems = get(
+        data,
+        "allPrismicHome.edges[0].node.data.category_block"
+      );
+      const node = get(data, "allPrismicHomeminimal.edges[0].node.data");
 
-			return (
-				<PrimaryLayout
-					fluid={true}
-					homeLink="/minimal"
-					pathPrefix="/minimal/collection"
-					showNoticeBar={false}
-				>
-					<SEO title="Home" />
-					{/* End of home seo */}
+      const adBlocks = get(
+        data,
+        "allPrismicCommon.edges[0].node.data.ad_blocks"
+      );
+      const bannerImage = node.banner_image.url;
+      const bannerTitle = node.banner_title.text;
+      const bannerSubTitle = node.banner_subtitle.text;
+      const bannerButtonText = node.banner_button_text.text;
+      const howItworks = node.how_it_works;
+      const callUsBanner = node.call_us_banner;
+      const callUsBannerContent = node.call_us_banner_content;
+      const callUsButtonText = node.call_us_button_text;
 
-					<HomeBanner
-						banner={bannerImage}
-						bannerTitle={bannerTitle}
-						bannerSubTitle={bannerSubTitle}
-						bannerButtonText={bannerButtonText}
-					/>
-					{/* End of banner */}
+      console.log("category items: ", categoryItems);
 
-					<HowItWorks items={howItworks} />
-					{/* End of how it works */}
+      return (
+        <PrimaryLayout
+          fluid={true}
+          homeLink="/minimal"
+          pathPrefix="/minimal/collection"
+          showNoticeBar={false}
+        >
+          <SEO title="Home" />
+          {/* End of home seo */}
 
-					<CategoryBlocks
-						title={categorySectionTitle}
-						shortIntro={categorySectionIntro}
-						categoryItems={categoryItems}
-					/>
-					{/* End of category blocks */}
+          <HomeBanner
+            banner={bannerImage}
+            bannerTitle={bannerTitle}
+            bannerSubTitle={bannerSubTitle}
+            bannerButtonText={bannerButtonText}
+          />
+          {/* End of banner */}
 
-					<FeaturedProducts withLink={true} />
-					{/* End of latest products */}
+          <HowItWorks items={howItworks} />
+          {/* End of how it works */}
 
-					<AdBanner
-						data={adBlocks}
-						scrollTo="#trendingProducts"
-						scrollOffset={60}
-					/>
-					{/* End of trending products */}
+          <CategoryBlocks
+            title={categorySectionTitle}
+            shortIntro={categorySectionIntro}
+            categoryItems={categoryItems}
+          />
+          {/* End of category blocks */}
 
-					<TrendingProducts withLink={true} />
-					{/* End of trending products */}
+          <FeaturedProducts withLink={true} />
+          {/* End of latest products */}
 
-					<CallusBanner
-						callUsBanner={callUsBanner}
-						callUsTitle={callUsBannerContent}
-						callUsButtonText={callUsButtonText}
-					/>
-					{/* End of call us banner */}
-				</PrimaryLayout>
-			);
-		}}
-	/>
+          <AdBanner
+            data={adBlocks}
+            scrollTo="#trendingProducts"
+            scrollOffset={60}
+          />
+          {/* End of trending products */}
+
+          <TrendingProducts withLink={true} />
+          {/* End of trending products */}
+
+          <CallusBanner
+            callUsBanner={callUsBanner}
+            callUsTitle={callUsBannerContent}
+            callUsButtonText={callUsButtonText}
+          />
+          {/* End of call us banner */}
+        </PrimaryLayout>
+      );
+    }}
+  />
 );
 
 export default IndexPage;

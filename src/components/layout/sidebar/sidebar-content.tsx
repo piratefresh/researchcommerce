@@ -2,7 +2,7 @@ import React from "react";
 import Cross from "../../icons/Cross";
 import ChavronRight from "../../icons/ChavronRight";
 import { useUI } from "../../../context/UIContext";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 import {
   Prismic_CategoryConnectionConnection,
   Prismic_CategoryConnectionEdge,
@@ -12,54 +12,32 @@ import Logo from "../../logo/logo";
 
 const menuStaticQuery = graphql`
   query {
-    prismic {
-      firstData: allCategorys {
-        totalCount
-        edges {
-          cursor
-          node {
-            _meta {
-              uid
+    allPrismicCategory {
+      totalCount
+      edges {
+        node {
+          uid
+          data {
+            title {
+              text
             }
-            title
             parent_category {
-              ... on PRISMIC_Category {
-                title
-                _meta {
+              document {
+                ... on PrismicCategory {
+                  data {
+                    title {
+                      text
+                    }
+                  }
                   uid
                 }
               }
             }
           }
-        }
-        pageInfo {
-          hasNextPage
-          endCursor
         }
       }
-      lastData: allCategorys(after: "YXJyYXljb25uZWN0aW9uOjE5") {
-        totalCount
-        edges {
-          cursor
-          node {
-            _meta {
-              uid
-            }
-            title
-            parent_category {
-              ... on PRISMIC_Category {
-                title
-                _meta {
-                  uid
-                }
-              }
-            }
-          }
-        }
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
+      pageInfo {
+        hasNextPage
       }
     }
   }
@@ -77,14 +55,13 @@ type MenuProps = {
   index?: number;
 };
 
-const getMenuData = (categories: Prismic_CategoryConnectionEdge[]) => {
-  console.log("categories: ", categories);
-  const data: any = [];
+const getMenuData = (categories) => {
+  const data = [];
   //fill up first parent
-  categories.forEach((category: Prismic_CategoryConnectionEdge) => {
-    if (!category?.node?.parent_category) {
-      const uid = category?.node?._meta.uid;
-      const text = category?.node?.title[0]?.text;
+  categories.forEach((category) => {
+    if (!category.node?.data?.parent_category?.document) {
+      const uid = category?.node?.uid;
+      const text = category?.node?.data.title.text;
       if (uid && text) {
         data.push({ path: uid, title: text });
       }
@@ -92,12 +69,17 @@ const getMenuData = (categories: Prismic_CategoryConnectionEdge[]) => {
   });
   //fill up child
   categories.forEach((category) => {
-    if (category?.node?.parent_category) {
-      const parent = category?.node?.parent_category?._meta?.uid;
-      const uid = category?.node?._meta.uid;
-      const text = category?.node?.title[0]?.text;
-      const index = data.findIndex((item) => item.path === parent);
+    if (category?.node?.data?.parent_category) {
+      const parent = category?.node?.data?.parent_category?.document?.uid;
+      const uid = category?.node?.uid;
+      const text = category?.node?.data.title.text;
+      const index = data.findIndex((item) => {
+        console.log(item.path);
+        return item.path === parent;
+      });
+
       if (index > -1) {
+        console.log("index: ", index);
         if (data[index].submenu && data[index].submenu.length) {
           data[index].submenu.push({ path: uid, title: text });
         } else {
@@ -107,6 +89,8 @@ const getMenuData = (categories: Prismic_CategoryConnectionEdge[]) => {
       }
     }
   });
+
+  console.log("data menu: ", data);
   return data;
 };
 
@@ -117,8 +101,8 @@ const SidebarNav: React.FC = () => (
       const { closeSidebar } = useUI();
       const [showSubMenu, setShowSubMenu] = React.useState<Boolean>(false);
       const [subMenuId, setShowMenuId] = React.useState<number>(0);
-      const { firstData, lastData } = data.prismic;
-      const categories = [...firstData.edges, ...lastData.edges];
+      const { allPrismicCategory } = data;
+      const categories = [...allPrismicCategory.edges];
       const menuData = getMenuData(categories);
       const handleClose = () => closeSidebar();
       const handleShowSubmenu = (id: number) => {
@@ -162,7 +146,6 @@ const SidebarNav: React.FC = () => (
                     return (
                       <li
                         className="flex flex-row items-center cursor-pointer mt-4"
-                        key={menu.path}
                         onClick={() => handleShowSubmenu(index)}
                       >
                         <div className="text-sm font-semibold">
@@ -189,7 +172,16 @@ const SidebarNav: React.FC = () => (
                     {menuData[subMenuId].submenu &&
                       menuData[subMenuId].submenu.map(
                         (submenu: SubMenuProps) => {
-                          return <div key={submenu.path}>{submenu.title}</div>;
+                          return (
+                            <Link
+                              key={submenu.path}
+                              to={`/collection/${submenu.path}`}
+                            >
+                              <div key={submenu.path} className="my-4">
+                                {submenu.title}
+                              </div>
+                            </Link>
+                          );
                         }
                       )}
                   </div>

@@ -79,31 +79,41 @@ module.exports = {
         queries: require("./src/utils/algolia-queries"),
       },
     },
-    // {
-    //   resolve: "gatsby-source-prismic",
-    //   options: {
-    //     repositoryName: reponame,
-    //     accessToken: apiKey,
-    //     schemas: {
-    //       home: homeSchema,
-    //       common: commonSchema,
-    //       homeMinimal: homeMinimalSchema,
-    //       category: categorySchema,
-    //       homeModern: homeModernSchema,
-    //     },
-    //   },
-    // },
     {
-      resolve: `gatsby-source-prismic-graphql`,
+      resolve: "gatsby-source-prismic",
       options: {
-        repositoryName: process.env.GATSBY_PRISMIC_REPOSITORY, // Load from env
-        path: "/preview",
-        previews: true,
-        sharpKeys: [
-          /image|photo|picture/, // (default)
-        ],
+        // The name of your prismic.io repository. This is required.
+        // Example: 'gatsby-source-prismic-test-site' if your prismic.io address
+        // is 'gatsby-source-prismic-test-site.prismic.io'.
+        repositoryName: "demostoremagnus",
+
+        // An API access token to your prismic.io repository. This is optional.
+        // You can generate an access token in the "API & Security" section of
+        // your repository settings. Setting a "Callback URL" is not necessary.
+        // The token will be listed under "Permanent access tokens".
+        accessToken:
+          "MC5ZR3pvLUJNQUFDSUFnRlA3.77-9Ze-_ve-_ve-_ve-_vSzvv70U77-977-977-9HO-_vTPvv70E77-977-977-977-9VSbvv73vv71WPndAJjZ2",
+        schemas: {
+          home: require("./src/schemas/home.json"),
+          common: require("./src/schemas/Common.json"),
+          category: require("./src/schemas/Category.json"),
+          homeMinimal: require("./src/schemas/HomeMinimal.json"),
+          homeModern: require("./src/schemas/HomeModern.json"),
+        },
+        lang: "*",
       },
     },
+    // {
+    //   resolve: `gatsby-source-prismic-graphql`,
+    //   options: {
+    //     repositoryName: process.env.GATSBY_PRISMIC_REPOSITORY, // Load from env
+    //     path: "/preview",
+    //     previews: true,
+    //     sharpKeys: [
+    //       /image|photo|picture/, // (default)
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -118,6 +128,7 @@ module.exports = {
         showSpinner: false,
       },
     },
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,

@@ -21,9 +21,11 @@ import styles from "../components/product-single.style";
 import ProductGrid from "../components/product-grid/product-grid";
 
 const ProductPage: React.FC<any> = ({
-  data: { shopifyProduct, shopifyCollection, prismic },
+  data,
+  data: { shopifyProduct, shopifyCollection, allPrismicHomeminimal },
   location: { href },
 }) => {
+  console.log("data", data);
   let product = shopifyProduct;
   product.listView = false;
 
@@ -113,19 +115,20 @@ const ProductPage: React.FC<any> = ({
     addClass.push("disabled");
   }
 
-  const callUsBannerData = prismic?.allHomeminimals?.edges[0]?.node;
+  const callUsBannerData = allPrismicHomeminimal?.edges[0]?.node?.data;
   const getPrice = (price: any) =>
     Intl.NumberFormat(undefined, {
       currency: price.currencyCode,
       minimumFractionDigits: 2,
       style: "currency",
     }).format(parseFloat(price && price.amount ? price.amount : 0));
-
+  console.log("callUsBannerData", callUsBannerData);
   return (
     <PrimaryLayout
       bgColor="#ffffff"
       fluid={true}
-      homeLink="/minimal"
+      homeLink="/"
+      // homeLink="/minimal"
       pathPrefix="/minimal/collection"
       showNoticeBar={false}
     >
@@ -279,13 +282,19 @@ export const pageQuery = graphql`
         }
       }
     }
-    prismic {
-      allHomeminimals {
-        edges {
-          node {
-            call_us_banner
-            call_us_banner_content
-            call_us_button_text
+    allPrismicHomeminimal {
+      edges {
+        node {
+          data {
+            call_us_banner {
+              url
+            }
+            call_us_banner_content {
+              text
+            }
+            call_us_button_text {
+              text
+            }
           }
         }
       }
