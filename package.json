@@ -87,15 +87,5 @@
     "tailwindcss": "^2.1.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,md,css}": [
-      "prettier --trailing-comma es5 --single-quote --write"
-    ]
   }
 }
