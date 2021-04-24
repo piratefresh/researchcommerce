@@ -7,6 +7,27 @@ require("dotenv").config({
 // const apiKey = process.env.PRISMIC_API_KEY;
 // const prismicReleaseID = process.env.PRISMIC_RELEASE_ID;
 
+// const homeSchema = require("./customTypes/home.json");
+// const commonSchema = require("./customTypes/Common.json");
+// const categorySchema = require("./customTypes/Category.json");
+// const homeMinimalSchema = require("./customTypes/HomeMinimal.json");
+// const homeModernSchema = require("./customTypes/HomeModern.json");
+
+// const gastbySourcePrismicConfig = {
+//   resolve: "gatsby-source-prismic",
+//   options: {
+//     repositoryName: reponame,
+//     accessToken: apiKey,
+//     schemas: {
+//       home: homeSchema,
+//       common: commonSchema,
+//       homeMinimal: homeMinimalSchema,
+//       category: categorySchema,
+//       homeModern: homeModernSchema,
+//     },
+//   },
+// };
+
 module.exports = {
   siteMetadata: {
     title: `PICKSY.`,
@@ -43,8 +64,8 @@ module.exports = {
     {
       resolve: `gatsby-source-shopify`,
       options: {
-        shopName: "setvi", // Load from env
-        accessToken: "ae09e949511331ea7336dc9bfd94e18c", // Load from env
+        shopName: process.env.GATSBY_SHOP_NAME, // Load from env
+        accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN, // Load from env
         verbose: true,
         paginationSize: 100,
         includeCollections: ["shop"],
@@ -70,8 +91,7 @@ module.exports = {
         // You can generate an access token in the "API & Security" section of
         // your repository settings. Setting a "Callback URL" is not necessary.
         // The token will be listed under "Permanent access tokens".
-        accessToken:
-          "MC5ZR3pvLUJNQUFDSUFnRlA3.77-9Ze-_ve-_ve-_ve-_vSzvv70U77-977-977-9HO-_vTPvv70E77-977-977-977-9VSbvv73vv71WPndAJjZ2",
+        accessToken: process.env.PRISMIC_API_KEY,
         schemas: {
           home: require("./src/schemas/home.json"),
           common: require("./src/schemas/Common.json"),
