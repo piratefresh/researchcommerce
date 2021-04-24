@@ -68,7 +68,7 @@ module.exports = {
         accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN, // Load from env
         verbose: true,
         paginationSize: 100,
-        includeCollections: ["shop"],
+        // includeCollections: ["shop"],
       },
     },
     {
