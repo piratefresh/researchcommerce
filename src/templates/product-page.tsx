@@ -122,7 +122,7 @@ const ProductPage: React.FC<any> = ({
       minimumFractionDigits: 2,
       style: "currency",
     }).format(parseFloat(price && price.amount ? price.amount : 0));
-  console.log("PRODUCT ID: ", window.atob(product.shopifyId));
+
   return (
     <PrimaryLayout
       bgColor="#ffffff"
