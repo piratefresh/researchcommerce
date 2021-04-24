@@ -64,8 +64,8 @@ module.exports = {
     {
       resolve: `gatsby-source-shopify`,
       options: {
-        shopName: process.env.GATSBY_SHOP_NAME, // Load from env
-        accessToken: process.env.GATSBY_SHOPIFY_ACCESS_TOKEN, // Load from env
+        shopName: "setvi", // Load from env
+        accessToken: "ae09e949511331ea7336dc9bfd94e18c", // Load from env
         verbose: true,
         paginationSize: 100,
         includeCollections: ["shop"],
