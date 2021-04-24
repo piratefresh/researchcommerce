@@ -3,25 +3,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-// const reponame = process.env.PRISMIC_REPO_NAME;
-// const apiKey = process.env.PRISMIC_API_KEY;
-// const prismicReleaseID = process.env.PRISMIC_RELEASE_ID;
-
-// const gastbySourcePrismicConfig = {
-//   resolve: "gatsby-source-prismic",
-//   options: {
-//     repositoryName: reponame,
-//     accessToken: apiKey,
-//     schemas: {
-//       home: homeSchema,
-//       common: commonSchema,
-//       homeMinimal: homeMinimalSchema,
-//       category: categorySchema,
-//       homeModern: homeModernSchema,
-//     },
-//   },
-// };
-
 module.exports = {
   siteMetadata: {
     title: `PICKSY.`,
