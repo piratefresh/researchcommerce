@@ -122,7 +122,7 @@ const ProductPage: React.FC<any> = ({
       minimumFractionDigits: 2,
       style: "currency",
     }).format(parseFloat(price && price.amount ? price.amount : 0));
-  console.log("callUsBannerData", callUsBannerData);
+  console.log("PRODUCT ID: ", window.atob(product.shopifyId));
   return (
     <PrimaryLayout
       bgColor="#ffffff"
@@ -209,12 +209,15 @@ const ProductPage: React.FC<any> = ({
           withLink={true}
           isCategoryProduct={true}
         />
-        <CallusBanner
+        <div>
+          <h2>COMMENT BOX</h2>
+        </div>
+        {/* <CallusBanner
           scrollTo="#relatedProducts"
           callUsBanner={callUsBannerData?.call_us_banner}
           callUsTitle={callUsBannerData?.call_us_banner_content}
           callUsButtonText={callUsBannerData?.call_us_button_text}
-        />
+        /> */}
       </Box>
     </PrimaryLayout>
   );

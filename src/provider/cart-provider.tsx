@@ -30,9 +30,9 @@ const CartProvider = ({ children }) => {
           return { ...prevState, checkout };
         });
       };
-      const createNewCheckout = () => store.client.checkout.create();
-      const newCheckout = await createNewCheckout();
-      setCheckoutInState(newCheckout);
+      // const createNewCheckout = () => store.client.checkout.create();
+      // const newCheckout = await createNewCheckout();
+      // setCheckoutInState(newCheckout);
     };
 
     initializeCheckout();
@@ -59,19 +59,19 @@ const CartProvider = ({ children }) => {
           });
           let windowReference = window.open();
 
-          return client.checkout
-            .addLineItems(checkoutId, lineItemsToUpdate)
-            .then((checkout) => {
-              windowReference.location = checkout.webUrl;
-              setIntialize(Date.now());
-              updateStore((prevState) => {
-                return {
-                  ...prevState,
-                  checkout,
-                  updating: false,
-                };
-              });
-            });
+          // return client.checkout
+          //   .addLineItems(checkoutId, lineItemsToUpdate)
+          //   .then((checkout) => {
+          //     windowReference.location = checkout.webUrl;
+          //     setIntialize(Date.now());
+          //     updateStore((prevState) => {
+          //       return {
+          //         ...prevState,
+          //         checkout,
+          //         updating: false,
+          //       };
+          //     });
+          //   });
         },
       }}
     >

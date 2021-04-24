@@ -39,7 +39,6 @@ const HitCount = connectStateResults(({ searchResults }) => {
 });
 
 const PageHit = ({ hit }: PageHitProps) => {
-  console.log("hit", hit);
   return (
     <div>
       <Link
