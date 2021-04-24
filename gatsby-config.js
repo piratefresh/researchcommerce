@@ -7,12 +7,6 @@ require("dotenv").config({
 // const apiKey = process.env.PRISMIC_API_KEY;
 // const prismicReleaseID = process.env.PRISMIC_RELEASE_ID;
 
-// const homeSchema = require("./customTypes/home.json");
-// const commonSchema = require("./customTypes/Common.json");
-// const categorySchema = require("./customTypes/Category.json");
-// const homeMinimalSchema = require("./customTypes/HomeMinimal.json");
-// const homeModernSchema = require("./customTypes/HomeModern.json");
-
 // const gastbySourcePrismicConfig = {
 //   resolve: "gatsby-source-prismic",
 //   options: {
