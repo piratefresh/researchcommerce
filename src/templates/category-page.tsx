@@ -35,7 +35,9 @@ const CategoryPage = ({ data, pageContext }: any) => {
   return (
     <PrimaryLayout>
       <SEO title={title} />
-      <h2 className="text-2xl font-bold my-2">{prismicData.data.title.text}</h2>
+      <h2 className="text-2xl font-bold my-2">
+        {prismicData.data ? prismicData.data.title.text : null}
+      </h2>
 
       {products.length > 0 ? (
         <ProductGrid
