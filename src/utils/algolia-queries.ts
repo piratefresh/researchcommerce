@@ -2,7 +2,7 @@ const escapeStringRegexp = require("escape-string-regexp");
 const pagePath = `content`;
 const indexName = `Pages`;
 
-const products = "shopify_setvi_products_tmp";
+const products = "shopify_setvi_products";
 const collections = "shopify_setvi_collections_tmp";
 const resources = "Resources";
 

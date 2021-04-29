@@ -14,8 +14,8 @@ import useWindowSize from "../../../../../hooks/useWindowSize";
 import styles from "./topbar.style";
 
 const searchIndices = [
-  { name: `shopify_products`, title: `shopify_products` },
-  { name: `shopify_collections`, title: `shopify_collections` },
+  { name: `shopify_setvi_products`, title: `shopify_setvi_products` },
+  { name: `shopify_setvi_collections`, title: `shopify_setvi_collections` },
 ];
 
 const Topbar: React.FC<{ fluid?: boolean; homeLink?: string }> = ({

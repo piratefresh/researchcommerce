@@ -129,7 +129,8 @@ const ProductPage: React.FC<any> = ({
       fluid={true}
       homeLink="/"
       // homeLink="/minimal"
-      pathPrefix="/minimal/collection"
+      // pathPrefix="/minimal/collection"
+      pathPrefix="/collection"
       showNoticeBar={false}
     >
       <Box sx={styles.wrapper}>
